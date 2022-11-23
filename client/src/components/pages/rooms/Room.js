@@ -16,6 +16,7 @@ const Room = (props) => {
   }, [location]);
   // for some reason this is rendering twice....
   const room = useSelector((state) => state.rooms.room);
+  console.log("room",room);
   const handleClick = () => {
     show === 4 ? setShow(room.amenities.length) : setShow(4);
   };
@@ -24,7 +25,7 @@ const Room = (props) => {
       <header
         className="header-main"
         style={{
-          background: `no-repeat center/cover url("/img/rooms/${room.mainImage}")`,
+          background: `no-repeat center/cover url("${room.mainImage}")`,
         }}
       >
         <div className="header-content">

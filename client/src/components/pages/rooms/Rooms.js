@@ -13,6 +13,7 @@ const Rooms = () => {
     dispatch(getAllRooms());
   }, [location]);
   const rooms = useSelector((state) => state.rooms.rooms);
+  console.log(rooms);
   const serverStatus = useSelector((state) => state.serverStatus);
 
   return (
@@ -62,7 +63,7 @@ const Rooms = () => {
         ) : (
           rooms.map((room) => (
             <article className="card" key={room.title}>
-              <Link to={`rooms/${room.url}`}>
+              <Link to={`rooms/${room._id}`}>
                 <button className="btn-alt ">EXPLORE</button>
               </Link>
               <div>
@@ -70,7 +71,7 @@ const Rooms = () => {
                 <p>{room.description}</p>
               </div>
               <div className="img-container">
-                <img src={`img/rooms/${room.mainImage}`} alt={room.mainImage} />
+                <img src={`${room.url}`} alt={room.mainImage} />
               </div>
             </article>
           ))

@@ -40,7 +40,8 @@ export const getBooking = async (req, res) => {
 export const postBooking = async (req, res) => {
   try {
     const data = req.body; // we now have the data to create a new booking
-
+ 
+console.log(data);
     const {
       firstName,
       lastName,
@@ -56,7 +57,6 @@ export const postBooking = async (req, res) => {
     } = data;
     // create a unique booking ID
     let newId = generateID(6);
-
     // check if ID already exists
     // first get all ID's and store them in an array
     const idArr = [];
@@ -70,24 +70,26 @@ export const postBooking = async (req, res) => {
     }
 
     // create a new booking in the MongoDB DB
-    const result = await Bookings.create({
-      firstName,
-      lastName,
-      email,
-      phone,
-      adults,
-      children,
-      startDate: dates[0],
-      endDate: dates[1],
-      room: title,
-      price: totalPrice,
-      cardType: paymentType,
-      cardNum,
-      confirmation: newId,
-    });
-    res.status(200).json(result);
+    const booking=new Bookings(data)
+    booking.save()
+    // const result = await Bookings.create({
+    //   firstName,
+    //   lastName,
+    //   email,
+    //   phone,
+    //   adults,
+    //   children,
+    //   startDate: dates[0],
+    //   endDate: dates[1],
+    //   room: title,
+    //   price: totalPrice,
+    //   cardType: paymentType,
+    //   cardNum,
+    //   confirmation: newId,
+    // });
+    res.status(200).json(booking);
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    res.status(404).json({ message: "jkadjhks" });
   }
 };
 

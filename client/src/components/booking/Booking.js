@@ -18,6 +18,7 @@ const Booking = (props) => {
     confirmation: "",
     email: "",
   });
+  console.log("bookingsAPI",bookingsAPI);
   const [error, setError] = useState("");
   useEffect(() => {
     dispatch(checkConnection());

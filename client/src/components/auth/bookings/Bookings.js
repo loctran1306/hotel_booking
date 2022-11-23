@@ -9,6 +9,8 @@ const Bookings = () => {
   }, []);
   let allBookings = useSelector((state) => state.existing);
 
+    console.log("allBookings",allBookings);
+
   const handleDelete = (id) => {
     // handle booking deletion...
     dispatch(deleteBooking({ id }));
